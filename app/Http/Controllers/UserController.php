@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Traits\DeleteFile;
 use App\Traits\UploadFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -36,6 +37,8 @@ class UserController extends Controller
 
     public function create()
     {
+        abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
+
         $companies = Company::all();
 
         return view('user.form', compact('companies'));
@@ -44,6 +47,8 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
+
         $request->merge(['password' => Hash::make($request->password)]);
         $user = User::create($request->except(['avatar']));
 
@@ -58,6 +63,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
+
         $companies = Company::all();
 
         return view('user.form', compact('user', 'companies'));
@@ -66,8 +73,12 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
+
         if (!empty($request->password)) {
             $request->merge(['password' => Hash::make($request->password)]);
+        } else {
+            $request->request->remove('password');
         }
 
         $user->update($request->except(['avatar']));
@@ -84,6 +95,8 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
+
         $this->deleteFile($user->logo, 'avatar');
         $user->delete();
 

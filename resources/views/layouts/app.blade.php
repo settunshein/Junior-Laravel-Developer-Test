@@ -13,15 +13,6 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-
-        * {
-            font-family: "Manrope", sans-serif !important;
-            font-size: 13px;
-        }
-    </style>
 </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

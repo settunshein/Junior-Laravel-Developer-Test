@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
-use App\Traits\UploadFile;
 use App\Traits\DeleteFile;
+use App\Traits\UploadFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CompanyController extends Controller
 {
@@ -33,12 +34,16 @@ class CompanyController extends Controller
 
     public function create()
     {
+        abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
+
         return view('company.form');
     }
 
 
     public function store(Request $request)
     {
+        abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
+
         $company = Company::create($request->except(['logo']));
 
         if ($request->hasFile('logo')) {
@@ -52,12 +57,16 @@ class CompanyController extends Controller
 
     public function edit(Company $company)
     {
+        abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
+
         return view('company.form', compact('company'));
     }
 
 
     public function update(Request $request, Company $company)
     {
+        abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
+
         $company->update($request->except(['logo']));
 
         if ($request->hasFile('logo')) {
@@ -72,6 +81,8 @@ class CompanyController extends Controller
 
     public function destroy(Company $company)
     {
+        abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
+
         $this->deleteFile($company->logo, 'company');
         $company->delete();
 

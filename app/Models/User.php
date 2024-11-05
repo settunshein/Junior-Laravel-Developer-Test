@@ -66,4 +66,57 @@ class User extends Authenticatable
             ";
         }
     }
+
+    public function checkIsEditable()
+    {
+        /*
+        $auth_user = auth()->user();
+
+        if ($auth_user->role === 'administrator' && $auth_user->remark === 'superadmin') {
+            return '';
+        }
+
+        if ($auth_user->role === 'administrator' && $auth_user->id === $this->id) {
+            return '';
+        }
+
+        return 'disabled';
+        */
+
+        $auth_user = auth()->user();
+
+        return ( $auth_user->role === 'administrator' &&
+               ( $auth_user->remark === 'superadmin' || $auth_user->id === $this->id) )
+               ? '' : 'disabled';
+    }
+
+    public function checkIsDeletable()
+    {
+        /*
+        $auth_user = auth()->user();
+
+        if ($this->role === 'administrator' && $this->remark === 'superadmin') {
+            return 'disabled';
+        }
+
+        if ($auth_user->role === 'administrator' && $auth_user->remark === 'superadmin') {
+            return '';
+        }
+
+        if ($auth_user->role === 'administrator' && $auth_user->remark !== 'superadmin') {
+            return 'disabled';
+        }
+
+        return 'disabled';
+        */
+
+        $auth_user = auth()->user();
+
+        if ($this->role === 'administrator' && $this->remark === 'superadmin') {
+            return 'disabled';
+        }
+
+        return ($auth_user->role === 'administrator' && $auth_user->remark === 'superadmin')
+               ? '' : 'disabled';
+    }
 }

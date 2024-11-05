@@ -11,10 +11,12 @@
     <div class="card rounded-0">
         <div class="card-header d-flex justify-content-between align-items-center">
             <p class="mb-0 px-2 card-ttl">User List Table</p>
+            @can('admin')
             <a href="{{ route('user.create') }}" class="btn btn-primary rounded-0">
                 Create
                 <span class="material-symbols-outlined ms-1">east</span>
             </a>
+            @endcan
         </div>
 
         <div class="card-body">
@@ -23,7 +25,9 @@
                     <tr>
                         <th style="width: 10%;">#</th>
                         <th>Basic Info</th>
+                        @can('admin')
                         <th style="width: 20%;">Action</th>
+                        @endcan
                     </tr>
                 </thead><!-- /thead -->
 
@@ -72,19 +76,22 @@
                             </div>
                         </td>
 
+                        @can('admin')
                         <td>
-                            <a href="{{ route('user.edit', $user->id) }}" class="action-btn btn btn-warning">
+                            <a href="{{ route('user.edit', $user->id) }}" class="action-btn btn btn-warning {{$user->checkIsEditable()}}">
                                 <span class="material-symbols-outlined">edit_square</span>
                             </a>
 
                             <form action="{{ route('user.destroy', $user->id) }}" class="deleteUserForm{{$user->id}} d-inline-block" method="POST">
                             @csrf
                             @method('DELETE')
-                                <a href="javascript:;" class="action-btn btn btn-danger del-user-btn" data-id="{{ $user->id }}">
+                                <a href="javascript:;" class="action-btn btn btn-danger del-user-btn {{$user->checkIsDeletable()}}"
+                                data-id="{{ $user->id }}">
                                     <span class="material-symbols-outlined">delete</span>
                                 </a>
                             </form>
                         </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody><!-- /.tbody -->

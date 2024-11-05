@@ -11,10 +11,12 @@
     <div class="card rounded-0">
         <div class="card-header d-flex justify-content-between align-items-center">
             <p class="mb-0 card-ttl">Company List Table</p>
+            @can('admin')
             <a href="{{ route('company.create') }}" class="btn btn-primary rounded-0">
                 Create
                 <span class="material-symbols-outlined ms-1">east</span>
             </a>
+            @endcan
         </div><!-- /.card-header -->
 
         <div class="card-body">
@@ -26,7 +28,9 @@
                         <th>Company</th>
                         <th>Email</th>
                         <th>Website</th>
+                        @can('admin')
                         <th style="width: 15%;">Action</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +41,7 @@
                         <td>{{ $company->name }}</td>
                         <td>{{ $company->email }}</td>
                         <td>{{ $company->website ?? '404' }}</td>
+                        @can('admin')
                         <td>
                             <a href="{{ route('company.edit', $company->id) }}" class="action-btn btn btn-warning">
                                 <span class="material-symbols-outlined">edit_square</span>
@@ -52,6 +57,7 @@
                                 </a>
                             </form>
                         </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>
