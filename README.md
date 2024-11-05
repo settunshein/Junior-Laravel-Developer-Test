@@ -1,5 +1,4 @@
-## Setup
-#### Prerequisites
+## Prerequisites
 - PHP (Version 8.0 or higher)
 - Composer (Dependency Manager for PHP)
 - MySQL (Database)
