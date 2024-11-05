@@ -13,14 +13,25 @@ class UserController extends Controller
 {
     use uploadFile, DeleteFile;
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::latest()->paginate(2);
-        $users->appends(request()->all());
+        $query = User::with('company');
+
+        if ($request->name) {
+            $query->where("name", "like", "%{$request->name}%");
+        }
+
+        if ($request->email) {
+            $query->orWhere("email", "like", "%{$request->email}%");
+        }
+
+        $users = $query->paginate(1);
+        $users->appends($request->all());
 
         return view('user.index', compact('users'))
-        ->with('i', (request()->input('page', 1) - 1) * 2);
+            ->with('i', (request()->input('page', 1) - 1) * 1);
     }
+
 
 
     public function create()

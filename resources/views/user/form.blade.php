@@ -30,7 +30,7 @@
     @if(!empty($user)) @method('PATCH') @endif
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <p class="mb-0 px-2">
+                <p class="mb-0 px-2 card-ttl">
                     @empty($user) Create User Form @else Edit User Form @endempty
                 </p>
             </div>

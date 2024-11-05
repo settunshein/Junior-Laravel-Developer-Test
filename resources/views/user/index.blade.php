@@ -2,16 +2,20 @@
 
 @section('title', 'Company | List')
 
+
+
 @section('content')
 <div class="col-lg-9">
+    @include('layouts.partials.search', [
+        'action' => 'user.index',
+    ])
+
     <div class="card rounded-0">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <p class="mb-0">User List Table</p>
+            <p class="mb-0 px-2 card-ttl">User List Table</p>
             <a href="{{ route('user.create') }}" class="btn btn-primary rounded-0">
                 Create
-                <span class="material-symbols-outlined ms-1">
-                    east
-                </span>
+                <span class="material-symbols-outlined ms-1">east</span>
             </a>
         </div>
 

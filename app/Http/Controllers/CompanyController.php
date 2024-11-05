@@ -11,13 +11,23 @@ class CompanyController extends Controller
 {
     use uploadFile, DeleteFile;
 
-    public function index()
+    public function index(Request $request)
     {
-        $companies = Company::latest()->paginate(3);
-        $companies->appends(request()->all());
+        $query = Company::query();
+
+        if ($request->name) {
+            $query->where("name", "like", "%$request->name%");
+        }
+
+        if ($request->email) {
+            $query->orWhere("email", "like", "%$request->email%");
+        }
+
+        $companies = $query->paginate(2);
+        $companies->appends($request->all());
 
         return view('company.index', compact('companies'))
-        ->with('i', (request()->input('page', 1) - 1) * 3);
+	    ->with('i', (request()->input('page', 1) - 1) * 3);
     }
 
 

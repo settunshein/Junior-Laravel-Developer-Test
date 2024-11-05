@@ -30,13 +30,13 @@
     @if(!empty($company)) @method('PATCH') @endif
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <p class="mb-0">
+                <p class="mb-0 px-2 card-ttl">
                     @empty($company) Create Company Form @else Edit Company Form @endempty
                 </p>
             </div>
 
-            <div class="card-body pt-4">
-                <div class="row g-3">
+            <div class="card-body py-4">
+                <div class="row g-3 p-2">
                     <div class="col-7">
                         <div class="form-group col-12 mb-4">
                             <label for="name" class="form-label">Company Name <b class="text-danger">*</b></label>
