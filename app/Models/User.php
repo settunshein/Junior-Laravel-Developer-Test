@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -38,4 +39,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+    public function getThumbnailImagePath()
+    {
+        if ($this->avatar) {
+            return asset('storage/avatar/thumbnail/'.$this->avatar);
+        } else {
+            return "
+                https://ui-avatars.com/api/?background=1E90FF&color=fff&name=$this->name
+            ";
+        }
+    }
+
+    public function getMediumImagePath()
+    {
+        if ($this->avatar) {
+            return asset('storage/avatar/medium/'.$this->avatar);
+        } else {
+            return "
+                https://ui-avatars.com/api/?background=1E90FF&color=fff&name=$this->name
+            ";
+        }
+    }
 }
