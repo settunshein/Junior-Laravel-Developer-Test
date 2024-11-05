@@ -55,14 +55,14 @@ Here are the endpoints for managing company:
 | Method | Endpoint                                | Description                         |
 | ------ | --------------------------------------- | ----------------------------------- |
 | POST   | http://localhost:8000/api/login         | Login                               |
-| POST   | http://localhost:8000/api/logout        | logout                              |
+| POST   | http://localhost:8000/api/logout        | Logout                              |
 | GET    | http://localhost:8000/api/company       | Fetch all company list              |
 | POST   | http://localhost:8000/api/company       | Create a new company                |
 | GET    | http://localhost:8000/api/company/{id}  | Fetch single company by company id  |
 | PATCH  | http://localhost:8000/api/company/{id}  | Update company by company id        |
 | DELETE | http://localhost:8000/api/company/{id}  | Delete company by company id        |
 
-To test these endpoints with Postman:
+To test these endpoints with <code>Postman</code>:
 - Open <code>Postman</code> and create a new request.
 - Log in by sending a <code>POST</code> request to <code>http://localhost:8000/api/login</code> with your login credentials.
 - Copy the <code>token</code> from the login response.
