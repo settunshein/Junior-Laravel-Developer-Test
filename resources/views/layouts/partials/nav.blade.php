@@ -8,20 +8,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-uppercase dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Account
+                    <a class="nav-link text-uppercase" href="{{ url('logout') }}">
+                        <span class="material-symbols-outlined" style="font-size: 18px; vertical-align: -4.15px;">logout</span>
+                        Logout
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item text-uppercase" href="#">Login</a></li>
-                        <li><a class="dropdown-item text-uppercase" href="#">Register</a></li>
-                        <li><a class="dropdown-item text-uppercase" href="#">Logout</a></li>
-                    </ul>
                 </li>
             </ul>
         </div>

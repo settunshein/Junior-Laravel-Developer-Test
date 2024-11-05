@@ -2,8 +2,6 @@
 
 @section('title', 'Company | List')
 
-
-
 @section('content')
 <div class="col-lg-9">
     @include('layouts.partials.search', [
