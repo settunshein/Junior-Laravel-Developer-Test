@@ -13,9 +13,11 @@ class CompanyController extends Controller
 
     public function index()
     {
-        $companies = Company::latest()->get();
+        $companies = Company::latest()->paginate(3);
+        $companies->appends(request()->all());
 
-        return view('company.index', compact('companies'));
+        return view('company.index', compact('companies'))
+        ->with('i', (request()->input('page', 1) - 1) * 3);
     }
 
 

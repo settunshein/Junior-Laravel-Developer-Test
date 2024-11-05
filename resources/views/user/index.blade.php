@@ -28,7 +28,7 @@
                 <tbody>
                     @foreach($users as $user)
                     <tr class="text-center">
-                        <td>{{ $loop->index + 1 }}</td>
+                        <td>{{ ++$i }}</td>
 
                         <td class="text-start p-3">
                             <div class="d-flex align-items-center px-3">
@@ -88,6 +88,12 @@
                 </tbody><!-- /.tbody -->
             </table>
         </div><!-- /.card-body -->
+
+        <div class="card-footer">
+            <div class="d-flex justify-content-center">
+                {{ $users->links() }}
+            </div>
+        </div><!-- /.card-footer -->
     </div><!-- /.card -->
 </div>
 @endsection

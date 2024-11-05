@@ -9,11 +9,9 @@
             <p class="mb-0">Company List Table</p>
             <a href="{{ route('company.create') }}" class="btn btn-primary rounded-0">
                 Create
-                <span class="material-symbols-outlined ms-1">
-                    east
-                </span>
+                <span class="material-symbols-outlined ms-1">east</span>
             </a>
-        </div>
+        </div><!-- /.card-header -->
 
         <div class="card-body">
             <table class="table table-bordered rounded-0">
@@ -30,7 +28,7 @@
                 <tbody>
                     @foreach($companies as $company)
                     <tr class="text-center">
-                        <td>{{ $loop->index + 1 }}</td>
+                        <td>{{ ++$i }}</td>
                         <td><img src="{{ $company->getThumbnailImagePath() }}" alt="{{ $company->name }}" style="width: 80px; border-radius: 8px;"></td>
                         <td>{{ $company->name }}</td>
                         <td>{{ $company->email }}</td>
@@ -54,7 +52,13 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+        </div><!-- /.card-body -->
+
+        <div class="card-footer">
+            <div class="d-flex justify-content-center">
+                {{ $companies->links() }}
+            </div>
+        </div><!-- /.card-footer -->
     </div>
 </div>
 @endsection
