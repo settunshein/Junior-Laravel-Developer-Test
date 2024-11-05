@@ -61,39 +61,20 @@
             margin-right: 5px;
         }
 
-        .card .card-header {
-            /* min-height: 45.25px; */
-            min-height: 50px;
-        }
-
-        .material-symbols-outlined {
-            font-family: 'Material Symbols Outlined';
-            font-weight: normal;
-            font-style: normal;
-            font-size: 14px;
-            line-height: 1;
-            letter-spacing: normal;
-            text-transform: none;
-            display: inline-block;
-            white-space: nowrap;
-            word-wrap: normal;
-            direction: ltr;
-            /* vertical-align: -2.25px; */
-            /* vertical-align: -3px; */
-            vertical-align: middle;
-            -webkit-font-feature-settings: 'liga';
-            -webkit-font-smoothing: antialiased;
-        }
-
         .action-btn span {
             font-size: 20px !important;
             vertical-align: middle;
         }
 
-        label {
-            /* font-weight: 600; */
+        .card .card-header {
+            min-height: 50px;
         }
 
+        .card .card-header .card-ttl {
+            font-weight: 600;
+        }
+
+        /* Styling Table */
         table thead tr th,
         table tbody tr td {
             text-align: center;
@@ -133,6 +114,26 @@
         .pagination .page-item .page-link  {
             border-radius: 0;
             padding: 8px 14px;
+        }
+
+        /* Material Icon Font */
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 14px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            /* vertical-align: -2.25px; */
+            /* vertical-align: -3px; */
+            vertical-align: middle;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
         }
     </style>
 

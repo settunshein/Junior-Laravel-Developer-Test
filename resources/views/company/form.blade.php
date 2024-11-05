@@ -40,19 +40,23 @@
                     <div class="col-7">
                         <div class="form-group col-12 mb-4">
                             <label for="name" class="form-label">Company Name <b class="text-danger">*</b></label>
-                            <input type="text" name="name" class="form-control" id="name"
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
                             value="{{ empty($company) ? old('name') : old('name', $company->name) }}">
+                            <small class="text-danger">{{ $errors->first('name') }}</small>
                         </div>
 
                         <div class="form-group col-12 mb-4">
                             <label for="email" class="form-label">Email Address <b class="text-danger">*</b></label>
-                            <input type="email" name="email" class="form-control" id="email"
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
                             value="{{ empty($company) ? old('email') : old('email', $company->email) }}">
+                            <small class="text-danger">{{ $errors->first('email') }}</small>
                         </div>
+
                         <div class="form-group col-12 mb-4">
                             <label for="website" class="form-label">Website</label>
-                            <input type="text" name="website" class="form-control" id="website"
+                            <input type="text" name="website" class="form-control @error('website') is-invalid @enderror" id="website"
                             value="{{ empty($company) ? old('website') : old('website', $company->website) }}">
+                            <small class="text-danger">{{ $errors->first('website') }}</small>
                         </div>
                     </div>
 
@@ -60,11 +64,16 @@
                         <div class="mb-3">
                             <p class="mb-2">Company Logo</p>
                             <label for="logo" class="mb-3">
-                                @php $src = empty($company) ? asset("img/img_placeholder_logo.jpg") : asset("storage/company/thumbnail/$company->logo"); @endphp
+                                @php
+                                $src = empty($company) || empty($company->logo)
+                                       ? asset("img/img_placeholder_logo.jpg")
+                                       : asset("storage/logo/thumbnail/$company->logo");
+                                @endphp
                                 <img src="{{ $src }}" id="preview-img">
                             </label>
                             <input type="file" name="logo" class="form-control d-none" id="logo" onchange="previewImage(this);">
                         </div>
+                        <small class="text-danger">{{ $errors->first('logo') }}</small>
                     </div>
                 </div>
             </div>

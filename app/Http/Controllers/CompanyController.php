@@ -7,6 +7,7 @@ use App\Traits\DeleteFile;
 use App\Traits\UploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\CompanyRequest;
 
 class CompanyController extends Controller
 {
@@ -24,7 +25,7 @@ class CompanyController extends Controller
             $query->orWhere("email", "like", "%$request->email%");
         }
 
-        $companies = $query->paginate(2);
+        $companies = $query->latest()->paginate(2);
         $companies->appends($request->all());
 
         return view('company.index', compact('companies'))
@@ -40,7 +41,7 @@ class CompanyController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
         abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
 
@@ -63,7 +64,7 @@ class CompanyController extends Controller
     }
 
 
-    public function update(Request $request, Company $company)
+    public function update(CompanyRequest $request, Company $company)
     {
         abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
 

@@ -11,7 +11,7 @@ class UserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,29 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
+        if ($this->method() != 'PATCH') {
+            $email    = 'required|unique:users,email';
+            $password = 'required';
+        }else{
+            $email    = 'required|email|unique:users,email,' . $this->user->id;
+            $password = 'nullable';
+        }
+
         return [
-            //
+            'company_id' => 'required',
+            'name'       => 'required',
+            'email'      => $email,
+            'phone'      => 'nullable',
+            'avatar'     => 'nullable',
+            'role'       => 'required',
+            'password'   => $password,
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'company_id.required' => 'Company field is required.'
         ];
     }
 }

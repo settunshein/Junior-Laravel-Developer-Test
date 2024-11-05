@@ -14,11 +14,11 @@ class CompaniesTableSeeder extends Seeder
     public function run(): void
     {
         $companies = [
-            [ 'name' => 'Tech Wave Solutions', 'email' => 'techwavesolution@gmail.com'],
-            [ 'name' => 'Inno Vision Systems', 'email' => 'innovisionsystem@gmail.com'],
-            [ 'name' => 'Code Craft Lab',      'email' => 'codecraftlab@gmail.com'],
-            [ 'name' => 'NexGen IT Services',  'email' => 'nexgenit@gmail.com'],
-            [ 'name' => 'Smart Matrix IT',     'email' => 'smartmatrixit@gmail.com'],
+            [ 'name' => 'Tech Wave Solutions', 'email' => 'techwavesolution@gmail.com', 'website' => fake()->url(), 'created_at' => now(), ],
+            [ 'name' => 'Inno Vision Systems', 'email' => 'innovisionsystem@gmail.com', 'website' => fake()->url(), 'created_at' => now(), ],
+            [ 'name' => 'Code Craft Lab',      'email' => 'codecraftlab@gmail.com',     'website' => fake()->url(), 'created_at' => now(), ],
+            [ 'name' => 'NexGen IT Services',  'email' => 'nexgenit@gmail.com',         'website' => fake()->url(), 'created_at' => now(), ],
+            [ 'name' => 'Smart Matrix IT',     'email' => 'smartmatrixit@gmail.com',    'website' => fake()->url(), 'created_at' => now(), ],
         ];
 
         Company::insert($companies);

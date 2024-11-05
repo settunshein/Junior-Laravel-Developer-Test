@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Traits\DeleteFile;
 use App\Traits\UploadFile;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,7 +27,7 @@ class UserController extends Controller
             $query->orWhere("email", "like", "%{$request->email}%");
         }
 
-        $users = $query->paginate(1);
+        $users = $query->latest()->paginate(1);
         $users->appends($request->all());
 
         return view('user.index', compact('users'))
@@ -45,7 +46,7 @@ class UserController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
 
@@ -71,7 +72,7 @@ class UserController extends Controller
     }
 
 
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         abort_if(!Gate::allows('admin'), 403, 'ACCESS DENIED');
 

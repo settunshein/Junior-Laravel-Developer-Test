@@ -11,7 +11,7 @@ class CompanyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,17 @@ class CompanyRequest extends FormRequest
      */
     public function rules(): array
     {
+        if ($this->method() != 'PATCH') {
+            $email = 'required|unique:companies,email';
+        }else{
+            $email = 'required|email|unique:companies,email,' . $this->company->id;
+        }
+
         return [
-            //
+            'name'    => 'required|string',
+            'email'   => $email,
+            'logo'    => 'nullable',
+            'website' => 'nullable',
         ];
     }
 }

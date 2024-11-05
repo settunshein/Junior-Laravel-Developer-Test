@@ -24,16 +24,16 @@
 
 @section('content')
 <div class="col-lg-9">
-    <form action="{{ empty($user) ? route('user.store') : route('user.update', $user->id) }}"
-    method="POST" enctype="multipart/form-data">
+    <form action="{{ empty($user) ? route('user.store') : route('user.update', $user->id) }}"method="POST" enctype="multipart/form-data">
     @csrf
     @if(!empty($user)) @method('PATCH') @endif
+
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <p class="mb-0 px-2 card-ttl">
                     @empty($user) Create User Form @else Edit User Form @endempty
                 </p>
-            </div>
+            </div><!-- /.card-header -->
 
             <div class="card-body py-4">
                 <div class="row g-3 p-2">
@@ -41,12 +41,14 @@
                         <label for="name" class="form-label">Username <b class="text-danger">*</b></label>
                         <input type="text" name="name" class="form-control" id="name"
                         value="{{ empty($user) ? old('name') : old('name', $user->name) }}">
+                        <small class="text-danger">{{ $errors->first('name') }}</small>
                     </div>
 
                     <div class="form-group col-lg-6 mb-2">
                         <label for="name" class="form-label">Email Address <b class="text-danger">*</b></label>
                         <input type="text" name="email" class="form-control" id="email"
                         value="{{ empty($user) ? old('email') : old('email', $user->email) }}">
+                        <small class="text-danger">{{ $errors->first('email') }}</small>
                     </div>
 
                     <div class="form-group col-lg-6 mb-2">
@@ -62,6 +64,7 @@
                             </option>
                             @endforeach
                         </select>
+                        <small class="text-danger">{{ $errors->first('role') }}</small>
                     </div>
 
                     <div class="form-group col-lg-6 mb-2">
@@ -78,6 +81,7 @@
                             </option>
                             @endforeach
                         </select>
+                        <small class="text-danger">{{ $errors->first('company_id') }}</small>
                     </div>
 
                     <div class="form-group col-lg-6 mb-2">
@@ -90,6 +94,7 @@
                         <label for="password" class="form-label">Password <b class="text-danger">*</b></label>
                         <input type="password" name="password" class="form-control" id="password"
                         placeholder="* * * * * * * *" autocomplete="new-password">
+                        <small class="text-danger">{{ $errors->first('password') }}</small>
                     </div>
 
                     <div class="form-group col-lg-12 mb-2">
@@ -106,27 +111,25 @@
                             <input type="file" name="avatar" class="form-control" id="avatar" onchange="previewImage(this);"
                             style="display: none;">
                         </div>
+                        <small class="text-danger">{{ $errors->first('avatar') }}</small>
                     </div>
                 </div><!-- /.row -->
-            </div>
+            </div><!-- /.card-body -->
 
             <div class="card-footer">
                 <div class="text-center">
                     <a href="{{ route('user.index') }}" class="btn btn-outline-primary rounded-0">
-                        <span class="material-symbols-outlined me-1">
-                            west
-                        </span>
+                        <span class="material-symbols-outlined me-1">west</span>
                         B A C K
                     </a>
                     <button type="submit" class="btn btn-primary rounded-0">
                         @if(empty($user)) Create @else Update @endif
-                        <span class="material-symbols-outlined ms-1">
-                            east
-                        </span>
+                        <span class="material-symbols-outlined ms-1">east</span>
                     </button>
                 </div>
             </div>
         </div><!-- /.card -->
+
     </form>
 </div>
 @endsection
